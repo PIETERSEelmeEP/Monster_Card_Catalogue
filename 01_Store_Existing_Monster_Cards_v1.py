@@ -15,7 +15,7 @@ monster_cards_catalogue = [
     ["Wispghoul", {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 4}]
 ]
 
-# Print the Combo menu with format
+# Print the Monster Card Catalogue (In format)
 for monster_cards in monster_cards_catalogue:
     monster_card_name = monster_cards[0]
     monster_card_value = monster_cards[1]
