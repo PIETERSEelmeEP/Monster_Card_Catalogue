@@ -67,35 +67,52 @@ monster_cards_catalogue = {
 
 # Create a dictionary for the new Monster Card
 # Asking for the Monster Cards name
-card_name = input("Enter the name of the new Monster Card: ")
+card_name = input("\nEnter the name of the new Monster Card: ")
 monster_cards_catalogue[card_name] = {}
 
 # Asking for the strength value
-strength = input("Enter monster strength (1-25): ")
+strength = input("\nEnter monster strength (1-25): ")
 monster_cards_catalogue[card_name]['strength'] = strength
 
 # Asking for the speed value
-speed = input("Enter monster speed (1-25): ")
+speed = input("\nEnter monster speed (1-25): ")
 monster_cards_catalogue[card_name]['speed'] = speed
 
 # Asking for the stealth value
-stealth = input("Enter monster stealth (1-25): ")
+stealth = input("\nEnter monster stealth (1-25): ")
 monster_cards_catalogue[card_name]['stealth'] = stealth
 
 # Asking for the cunning value
-cunning = input("Enter monster cunning (1-25): ")
+cunning = input("\nEnter monster cunning (1-25): ")
 monster_cards_catalogue[card_name]['cunning'] = cunning
 
 # Asking if they want to edit the card
-edit = input("do you want to edit the card? ")
-if edit == 'yes':
-    to_edit = input("What field do you want to edit?: (Monster name, Strength,"
-                    " Speed, Stealth, Cunning")
-    if to_edit == 'Monster name':
-        card_name = input("Enter the name of the new Monster Card: ")
-    elif to_edit == 'Strength':
-        strength = input("Enter monster strength (1-25): ")
-        monster_cards_catalogue[card_name]['strength'] = strength
+edit = input("\nDo you want to edit the card? (yes or no)").lower()
+while edit == 'yes':
+    to_edit = input("What field do you want to edit?: (Strength,"
+                    " Speed, Stealth, Cunning, Save or Cancel) ").lower()
+    if to_edit == 'strength':
+        new_strength = input("\nEnter monster strength (1-25): ")
+    elif to_edit == 'speed':
+        new_speed = input("\nEnter monster speed (1-25): ")
+    elif to_edit == 'stealth':
+        new_stealth = input("\nEnter monster stealth (1-25): ")
+    elif to_edit == 'cunning':
+        new_cunning = input("\nEnter monster cunning (1-25): ")
+    elif to_edit == 'save':
+        monster_cards_catalogue[card_name]['new_strength'] = strength
+        monster_cards_catalogue[card_name]['new_speed'] = speed
+        monster_cards_catalogue[card_name]['new_stealth'] = stealth
+        monster_cards_catalogue[card_name]['new_cunning'] = cunning
+        break
+    else:
+        confirm = input("\nAre you sure you want to cancel? (yes or no) ")\
+            .lower()
+        if confirm == 'yes':
+            break
+        else:
+            continue
+
 
 # Print the Monster Card Catalogue (In format)
 for monster_card_name, monster_card_values in monster_cards_catalogue.items():
