@@ -69,6 +69,15 @@ monster_cards_catalogue = {
 }
 
 
+def value_checker(value):
+    if 0 > value > 25:
+        print("Please enter a value between 1 and 25")
+        value = int(input("\nEnter value (1-25): "))
+    elif ValueError:
+        print("Please enter an integer")
+        value = int(input("\nEnter value (1-25): "))
+
+
 # Create a new monster card function
 def create_new_monster_card():
     # Create a dictionary for the new Monster Card
@@ -78,23 +87,23 @@ def create_new_monster_card():
 
     # Asking for the strength value
     strength = int(input("\nEnter monster strength (1-25): "))
+    value_checker(strength)
     monster_cards_catalogue[card_name]['strength'] = strength
 
     # Asking for the speed value
     speed = int(input("\nEnter monster speed (1-25): "))
+    value_checker(speed)
     monster_cards_catalogue[card_name]['speed'] = speed
 
     # Asking for the stealth value
     stealth = int(input("\nEnter monster stealth (1-25): "))
+    value_checker(stealth)
     monster_cards_catalogue[card_name]['stealth'] = stealth
 
     # Asking for the cunning value
     cunning = int(input("\nEnter monster cunning (1-25): "))
+    value_checker(cunning)
     monster_cards_catalogue[card_name]['cunning'] = cunning
-
-    if ValueError:
-        print("Please enter an integer")
-    elif cunning
 
     # Asking if they want to edit the card
     edit = input("\nDo you want to edit the card? (yes or no)").lower()
@@ -138,6 +147,8 @@ def create_new_monster_card():
                 continue
 
 
+# Main Routine
+create_new_monster_card()
 # Print the Monster Card Catalogue (In format)
 for monster_card_name, monster_card_values in monster_cards_catalogue.items():
     print(f"\nMonster Card: {monster_card_name}")
