@@ -1,6 +1,5 @@
 """This program only uses the python console. This program asks the user if
-they want to  create a new monster card. They have the choice to edit the new
-monster card. Boundaries are set unlike 02_Add_Monster_Card_v1, and I made it
+they want to  create a new monster card. Boundaries are set unlike 02_Add_Monster_Card_v1, and I made it
 a function allowing for it to be reused.
 """
 
@@ -103,52 +102,6 @@ def create_new_monster_card():
     cunning = int(input("\nEnter monster cunning (1-25): "))
     cunning = value_checker(cunning)
     monster_cards_catalogue[card_name]['Cunning'] = cunning
-
-    # Asking if they want to edit the card
-    edit = input("\nDo you want to edit the card? (yes or no)").lower()
-    while edit == 'yes':
-
-        # Asking the user what part of the monster card they want to edit
-        to_edit = input("What field do you want to edit?: (Strength,"
-                        " Speed, Stealth, Cunning, Save or Cancel) ").lower()
-
-        # Allowing them to edit strength value
-        if to_edit == 'strength':
-            new_strength = int(input("\nEnter monster strength (1-25): "))
-            monster_cards_catalogue[card_name]['Strength'] = \
-                value_checker(new_strength)
-
-        # Allowing them to edit speed value
-        elif to_edit == 'speed':
-            new_speed = int(input("\nEnter monster speed (1-25): "))
-            monster_cards_catalogue[card_name]['Speed'] = \
-                value_checker(new_speed)
-
-        # Allowing them to edit stealth value
-        elif to_edit == 'stealth':
-            new_stealth = int(input("\nEnter monster stealth (1-25): "))
-            monster_cards_catalogue[card_name]['Stealth'] = \
-                value_checker(new_stealth)
-
-        # Allowing them to edit cunning value
-        elif to_edit == 'cunning':
-            new_cunning = int(input("\nEnter monster cunning (1-25): "))
-            monster_cards_catalogue[card_name]['Cunning'] = \
-                value_checker(new_cunning)
-
-        # Allowing them to save their edits
-        elif to_edit == 'save':
-            print("Edits saved!")
-            break
-
-        # Allowing them to cancel/delete their edits
-        else:
-            confirm = input("\nAre you sure you want to cancel? (yes or no) ")\
-                .lower()
-            if confirm == 'yes':
-                break
-            else:
-                continue
 
 
 # Main Routine
