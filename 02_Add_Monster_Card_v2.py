@@ -1,6 +1,6 @@
 """This program only uses the python console. This program asks the user if
-they want to  create a new monster card. Boundaries are set unlike 02_Add_Monster_Card_v1, and I made it
-a function allowing for it to be reused.
+they want to  create a new monster card. Boundaries are set unlike
+02_Add_Monster_Card_v1, and I made it a function allowing for it to be reused.
 """
 
 # Monster Card Catalogue using dictionaries within nested dictionaries
