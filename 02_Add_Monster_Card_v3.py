@@ -101,7 +101,7 @@ def create_new_monster_card():
     cunning = easygui.integerbox("Enter monster cunning (1-25)",
                                  title="Cunning Value", lowerbound=1,
                                  upperbound=25)
-    monster_cards_cat2alogue[card_name]['Cunning'] = cunning
+    monster_cards_catalogue[card_name]['Cunning'] = cunning
 
 
 # Main Routine
