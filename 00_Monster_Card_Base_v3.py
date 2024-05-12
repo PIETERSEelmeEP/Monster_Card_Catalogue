@@ -126,21 +126,27 @@ if read_instructions == "Yes":
                    "If you want to delete a monster card"
                    " (Press 'Delete')\nThen enter the name of the monster you "
                    "want to delete\nAfterwards you will need to confirm you "
-                   "want to delete the monster card\n\nStart cataloging")
+                   "want to delete the monster card\n"
+                   # Exit and print full monster card catalogue
+                   "If you want to exit the program (Press 'Print Catalogue') "
+                   "Then the entire monster card catalogue will be printed in "
+                   "the python console. And the program will end\n\nStart "
+                   "cataloging")
 
-option = easygui.buttonbox("Select further action", title="Main Dialogue",
-                           choices=["Create New Card",
-                                    "Print Monster Card Catalogue"])
+while True:
+    option = easygui.buttonbox("Select further action", title="Main Dialogue",
+                               choices=["Add", "Print Catalogue"])
 
-# Activate the action the user selects
-if option == "Create New Card":
-    # Activate the new monster card function
-    create_new_monster_card()
-else:
-    # Print the Monster Card Catalogue (In format) in python console
-    for monster_card_name, monster_card_values in monster_cards_catalogue\
-            .items():
-        print(f"\nMonster Card: {monster_card_name}")
+    # Activate the action the user selects
+    if option == "Add":
+        # Activate the new monster card function
+        create_new_monster_card()
+    else:
+        # Print the Monster Card Catalogue (In format) in python console
+        for monster_card_name, monster_card_values in monster_cards_catalogue \
+                .items():
+            print(f"\nMonster Card: {monster_card_name}")
 
-        for key in monster_card_values:
-            print(f"{key}: {monster_card_values[key]}")
+            for key in monster_card_values:
+                print(f"{key}: {monster_card_values[key]}")
+        break
