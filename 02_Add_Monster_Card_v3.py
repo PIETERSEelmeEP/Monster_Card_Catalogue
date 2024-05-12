@@ -107,7 +107,7 @@ def create_new_monster_card():
 # Main Routine
 create_new_monster_card()
 
-# Print the Monster Card Catalogue (In format)
+# Print the Monster Card Catalogue (In format) in python console
 for monster_card_name, monster_card_values in monster_cards_catalogue.items():
     print(f"\nMonster Card: {monster_card_name}")
 
