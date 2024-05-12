@@ -69,13 +69,12 @@ monster_cards_catalogue = {
 }
 
 
+# Check value is within boundaries
 def value_checker(value):
-    if 0 > value > 25:
+    if not (1 <= value <= 25):
         print("Please enter a value between 1 and 25")
         value = int(input("\nEnter value (1-25): "))
-    elif ValueError:
-        print("Please enter an integer")
-        value = int(input("\nEnter value (1-25): "))
+    return value
 
 
 # Create a new monster card function
@@ -87,23 +86,23 @@ def create_new_monster_card():
 
     # Asking for the strength value
     strength = int(input("\nEnter monster strength (1-25): "))
-    value_checker(strength)
-    monster_cards_catalogue[card_name]['strength'] = strength
+    strength = value_checker(strength)
+    monster_cards_catalogue[card_name]['Strength'] = strength
 
     # Asking for the speed value
     speed = int(input("\nEnter monster speed (1-25): "))
-    value_checker(speed)
-    monster_cards_catalogue[card_name]['speed'] = speed
+    speed = value_checker(speed)
+    monster_cards_catalogue[card_name]['Speed'] = speed
 
     # Asking for the stealth value
     stealth = int(input("\nEnter monster stealth (1-25): "))
-    value_checker(stealth)
-    monster_cards_catalogue[card_name]['stealth'] = stealth
+    stealth = value_checker(stealth)
+    monster_cards_catalogue[card_name]['Stealth'] = stealth
 
     # Asking for the cunning value
     cunning = int(input("\nEnter monster cunning (1-25): "))
-    value_checker(cunning)
-    monster_cards_catalogue[card_name]['cunning'] = cunning
+    cunning = value_checker(cunning)
+    monster_cards_catalogue[card_name]['Cunning'] = cunning
 
     # Asking if they want to edit the card
     edit = input("\nDo you want to edit the card? (yes or no)").lower()
@@ -115,26 +114,31 @@ def create_new_monster_card():
 
         # Allowing them to edit strength value
         if to_edit == 'strength':
-            new_strength = input("\nEnter monster strength (1-25): ")
+            new_strength = int(input("\nEnter monster strength (1-25): "))
+            monster_cards_catalogue[card_name]['Strength'] = \
+                value_checker(new_strength)
 
         # Allowing them to edit speed value
         elif to_edit == 'speed':
-            new_speed = input("\nEnter monster speed (1-25): ")
+            new_speed = int(input("\nEnter monster speed (1-25): "))
+            monster_cards_catalogue[card_name]['Speed'] = \
+                value_checker(new_speed)
 
         # Allowing them to edit stealth value
         elif to_edit == 'stealth':
-            new_stealth = input("\nEnter monster stealth (1-25): ")
+            new_stealth = int(input("\nEnter monster stealth (1-25): "))
+            monster_cards_catalogue[card_name]['Stealth'] = \
+                value_checker(new_stealth)
 
         # Allowing them to edit cunning value
         elif to_edit == 'cunning':
-            new_cunning = input("\nEnter monster cunning (1-25): ")
+            new_cunning = int(input("\nEnter monster cunning (1-25): "))
+            monster_cards_catalogue[card_name]['Cunning'] = \
+                value_checker(new_cunning)
 
         # Allowing them to save their edits
         elif to_edit == 'save':
-            monster_cards_catalogue[card_name]['new_strength'] = strength
-            monster_cards_catalogue[card_name]['new_speed'] = speed
-            monster_cards_catalogue[card_name]['new_stealth'] = stealth
-            monster_cards_catalogue[card_name]['new_cunning'] = cunning
+            print("Edits saved!")
             break
 
         # Allowing them to cancel/delete their edits
@@ -149,6 +153,7 @@ def create_new_monster_card():
 
 # Main Routine
 create_new_monster_card()
+
 # Print the Monster Card Catalogue (In format)
 for monster_card_name, monster_card_values in monster_cards_catalogue.items():
     print(f"\nMonster Card: {monster_card_name}")
