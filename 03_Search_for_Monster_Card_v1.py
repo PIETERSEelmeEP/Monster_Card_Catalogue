@@ -70,7 +70,7 @@ monster_cards_catalogue = {
 card_search = input("Enter the name of the Monster card you are searching "
                     "for: ")
 
-# Searching for the Monster Card name
+# Searching for the Monster Card
 found = False
 for card, values in monster_cards_catalogue.items():
     if card_search.lower() == card.lower():
@@ -82,4 +82,4 @@ for card, values in monster_cards_catalogue.items():
         break
 
 if not found:
-    print(f"There are no Monster Card named {card_search}")
+    print(f"There are no Combos named {card_search}")
