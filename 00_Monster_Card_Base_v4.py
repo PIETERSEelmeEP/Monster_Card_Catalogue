@@ -107,11 +107,13 @@ def search_monster_card():
     # User selects monster card they are searching for
     card_search = easygui.buttonbox("Select the Monster Card you are searching"
                                     " for", title="Searching",
-                                    choices=catalogue)
+                                    choices=catalogue + ["Cancel"])
 
     # Print the Results
     search_results = ""
-    if card_search:
+    if card_search == "Cancel":
+        return card_search
+    elif card_search:
         search_results += f"Monster Name: {card_search}\n"
         for category, values in monster_cards_catalogue[card_search].items():
             search_results += f"{category}: {values}\n"
