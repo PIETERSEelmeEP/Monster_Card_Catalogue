@@ -84,6 +84,7 @@ def search_monster_card():
         for category, values in monster_cards_catalogue[card_search].items():
             search_results += f"{category}: {values}\n"
         easygui.msgbox(search_results, title="Results")
+        print(search_results)
     else:
         easygui.msgbox("No card selected!", title="Results")
 
