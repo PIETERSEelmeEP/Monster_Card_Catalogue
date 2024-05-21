@@ -1,4 +1,6 @@
-"""
+"""This program asks the user to select the Monster card then category they
+want to edit, then allow them to enter the new value, and either save or cancel
+the newly entered values
 """
 
 # Monster Card Catalogue using dictionaries within nested dictionaries
@@ -65,44 +67,51 @@ monster_cards_catalogue = {
     }
 }
 
-# Asking if they want to edit the card
-edit = input("\nDo you want to edit the card? (yes or no)").lower()
-while edit == 'yes':
+# Asking what monster card they want to edit
+print("\nMonster Cards Catalogue:")
+for monster_card_name in monster_cards_catalogue:
+    print(f"{monster_card_name}")
 
-    # Asking the user what part of the monster card they want to edit
-    to_edit = input("What field do you want to edit?: (Strength,"
-                    " Speed, Stealth, Cunning, Save or Cancel) ").lower()
+edit_card = input("\nEnter the monster card you would like to edit: ").title()
 
-    # Allowing them to edit strength value
-    if to_edit == 'strength':
-        new_strength = input("\nEnter monster strength (1-25): ")
+if edit_card not in monster_cards_catalogue:
+    print("Invalid monster card name. Exiting program.")
+else:
+    card = monster_cards_catalogue[edit_card]
 
-    # Allowing them to edit speed value
-    elif to_edit == 'speed':
-        new_speed = input("\nEnter monster speed (1-25): ")
+    while True:
+        print(f"\nEditing {edit_card}:")
+        for key, value in card.items():
+            print(f"{key}: {value}")
 
-    # Allowing them to edit stealth value
-    elif to_edit == 'stealth':
-        new_stealth = input("\nEnter monster stealth (1-25): ")
+        to_edit = input("What field do you want to edit? (Strength, Speed, "
+                        "Stealth, Cunning, Save, or Cancel): ").title()
 
-    # Allowing them to edit cunning value
-    elif to_edit == 'cunning':
-        new_cunning = input("\nEnter monster cunning (1-25): ")
-
-    # Allowing them to save their edits
-    elif to_edit == 'save':
-        monster_cards_catalogue[card_name]['new_strength'] = strength
-        monster_cards_catalogue[card_name]['new_speed'] = speed
-        monster_cards_catalogue[card_name]['new_stealth'] = stealth
-        monster_cards_catalogue[card_name]['new_cunning'] = cunning
-        break
-
-    # Allowing them to cancel/delete their edits
-    else:
-        confirm = input("\nAre you sure you want to cancel? (yes or no) ")\
-            .lower()
-        if confirm == 'yes':
+        if to_edit == 'Save':
+            print(f"Changes to {edit_card} have been saved.")
             break
+        elif to_edit == 'Cancel':
+            confirm = input("Are you sure you want to cancel? (yes or no): ")\
+                .lower()
+            if confirm == 'yes':
+                print("No changes were made.")
+                break
+        elif to_edit in card:
+            try:
+                new_value = int(input(f"Enter new {to_edit} value (1-25): "))
+                if 1 <= new_value <= 25:
+                    card[to_edit] = new_value
+                else:
+                    print("Value out of range. Please enter a value between 1 "
+                          "and 25.")
+            except ValueError:
+                print("Invalid input. Please enter a numeric value.")
         else:
-            continue
+            print("Invalid field. Please choose from Strength, Speed, Stealth,"
+                  " Cunning, Save, or Cancel.")
 
+for monster_card_name, monster_card_values in monster_cards_catalogue.items():
+    print(f"\nMonster Card: {monster_card_name}")
+
+    for key in monster_card_values:
+        print(f"{key}: {monster_card_values[key]}")
