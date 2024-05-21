@@ -71,27 +71,59 @@ monster_cards_catalogue = {
 card_search = easygui.enterbox("Enter the name of the Monster card you are "
                                "searching for", title="Searching")
 
-# Searching for the Monster Card name
+# Searching for the Monster Card name or its value
 found = False
 search_results = "Results\n"
+
 for card, values in monster_cards_catalogue.items():
     if card_search.lower() == card.lower():
-        search_results += f"Monster Name: {card_search}\n"
+        search_results += f"Monster Name: {card}\n"
         for category, level in values.items():
-            search_results += f"{category}: {values}\n"
+            search_results += f"{category}: {level}\n"
         found = True
         break
     else:
-        for catagory, level in values.items():
+        for category, level in values.items():
             if str(level).lower() == card_search.lower():
-                search_results += f"Monster Name: {card_search}\n"
-                for category, level_ in values.items():
-                    search_results += f"{category}: {values}\n"
+                search_results += f"Monster Name: {card}\n"
+                for category_, level_ in values.items():
+                    search_results += f"{category_}: {level_}\n"
                 found = True
                 break
-easygui.msgbox(search_results, title="Results")
+        if found:
+            break
 
-if not found:
-    easygui.msgbox(f"There are no Monster Card named {card_search}\nNor are "
-                   f"there any category's within Monster cards with the value "
-                   f"of {card_search}", title="Results")
+if found:
+    easygui.msgbox(search_results, title="Results")
+else:
+    easygui.msgbox(f"There are no Monster Cards named '{card_search}'\nNor are"
+                   f" there any categories within Monster cards with the value"
+                   f" of '{card_search}'", title="Results")
+#
+# card_search = easygui.enterbox("Enter the name of the Monster card you are "
+#                                "searching for", title="Searching")
+#
+# # Searching for the Monster Card name or its value
+# found = False
+# search_results = "Results\n"
+# for card, values in monster_cards_catalogue.items():
+#     if card_search.lower() == card.lower():
+#         search_results += f"Monster Name: {card_search}\n"
+#         for category, level in values.items():
+#             search_results += f"{category}: {values}\n"
+#         found = True
+#         break
+#     else:
+#         for catagory, level in values.items():
+#             if str(level).lower() == card_search.lower():
+#                 search_results += f"Monster Name: {card_search}\n"
+#                 for category, level_ in values.items():
+#                     search_results += f"{category}: {values}\n"
+#                 found = True
+#                 break
+# easygui.msgbox(search_results, title="Results")
+#
+# if not found:
+#     easygui.msgbox(f"There are no Monster Card named {card_search}\nNor are "
+#                    f"there any category's within Monster cards with the value "
+#                    f"of {card_search}", title="Results")
