@@ -76,7 +76,7 @@ def delete_monster_card():
         cards = list(monster_cards_catalogue.keys())
         delete_card = easygui.buttonbox(
             "Select the Monster Card you want to delete",
-            title="Edit Category",
+            title="Delete Monster Card",
             choices=cards + ["Exit"])
 
         # Searching for the Monster Card
@@ -98,8 +98,11 @@ def delete_monster_card():
                     if confirmation == "Confirm":
                         # Delete Monster card permanently from catalogue
                         del monster_cards_catalogue[card]
+                        easygui.msgbox("Monster Card successfully deleted",
+                                       title="Confirmed")
                     else:
                         # Keep the monster card unchanged in catalogue
+                        easygui.msgbox("Deletion cancelled", title="Complete")
                         continue
                     break
         # If user selects exit break loop and exit function
