@@ -86,7 +86,7 @@ def edit_monster_card():
                                              f"category you want to edit:",
                                              title="Edit Category",
                                              choices=categories + ["Exit"])
-            if new_category and new_category != "Exit":
+            if new_category != "Exit":
 
                 new_value = easygui.integerbox(f"Enter the new value for "
                                                f"{new_category} (1-25):",
@@ -94,12 +94,13 @@ def edit_monster_card():
                                                lowerbound=1,
                                                upperbound=25)
                 if new_value is not None:
-
                     # Display the newly edited monster card's values
                     new_values = f"Monster Name: {edit_card}\n"
                     for category, values in monster_cards_catalogue[edit_card]\
                             .items():
                         new_values += f"{category}: {values}\n"
+                    new_values += f"New Edited Version:\n"
+                    new_values += f"{new_category}: {new_value}\n"
                     new_values += "Would you like to save these changes or " \
                                   "cancel?"
 
@@ -120,8 +121,6 @@ def edit_monster_card():
                                                    choices=["Yes", "No"])
                         if cancel == "Yes":
                             # Reset the edited value
-                            monster_cards_catalogue[edit_card][new_category] \
-                                = new_value
                             easygui.msgbox("Changes cancelled.",
                                            title="Cancelled")
             else:
