@@ -73,19 +73,25 @@ delete_card = input("Enter the name of the Monster card you want to delete: ")
 found = False
 for card, values in monster_cards_catalogue.items():
     if delete_card.lower() == card.lower():
-        print("Results:")
-        print(f"Monster Name: {delete_card}")
+        print(f"\nMonster Name: {delete_card}")
         for category, level in values.items():
             print(f"{category}: {level}")
         found = True
         # Asking for confirmation to delete the monster card
-        confirmation = input("Are you sure you want to delete this monster "
-                             "card? (Enter yes or no)").lower()
+        confirmation = input("\nAre you sure you want to delete this monster "
+                             "card? (Enter yes or no) ").lower()
         if confirmation == "yes":
-            del monster_cards_catalogue[delete_card].lower
+            del monster_cards_catalogue[card]
         else:
             continue
         break
 
 if not found:
     print(f"There are no Combos named {card_search}")
+
+for monster_card_name, monster_card_values in monster_cards_catalogue \
+        .items():
+    print(f"\nMonster Card: {monster_card_name}")
+
+    for key in monster_card_values:
+        print(f"{key}: {monster_card_values[key]}")
