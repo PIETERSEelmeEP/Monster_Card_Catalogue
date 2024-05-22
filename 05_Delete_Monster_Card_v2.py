@@ -68,37 +68,49 @@ monster_cards_catalogue = {
     }
 }
 
-# Main Routine
-cards = list(monster_cards_catalogue.keys())
-delete_card = easygui.buttonbox("Select the Monster Card you want to delete",
-                                title="Edit Category",
-                                choices=cards + ["Exit"])
 
-# Searching for the Monster Card
-found = False
-for card, value in monster_cards_catalogue.items():
-    if delete_card.lower() == card.lower():
-        deleted_card = f"Monster Name: {delete_card}\n"
-        for category, values in monster_cards_catalogue[delete_card].items():
-            deleted_card += f"{category}: {values}\n"
-        found = True
-        # Asking for confirmation to delete the monster card
-        deleted_card += f"Are you sure you want to delete this monster card?"
-        confirmation = easygui.buttonbox(f"{deleted_card}",
-                                         title="Confirmation",
-                                         choices=["Confirm", "Cancel"])
-        if confirmation == "Confirm":
-            del monster_cards_catalogue[card]
+# Delete monster card function
+def delete_monster_card():
+    while True:
+        # Ask user to select monster card they want to delete
+        cards = list(monster_cards_catalogue.keys())
+        delete_card = easygui.buttonbox(
+            "Select the Monster Card you want to delete",
+            title="Edit Category",
+            choices=cards + ["Exit"])
+
+        # Searching for the Monster Card
+        if delete_card != "Exit":
+            for card, value in monster_cards_catalogue.items():
+                if delete_card.lower() == card.lower():
+                    # Display the monster card to verify
+                    deleted_card = f"Monster Name: {delete_card}\n"
+                    for category, values in \
+                            monster_cards_catalogue[delete_card].items():
+                        deleted_card += f"{category}: {values}\n"
+                    # Asking for confirmation to delete the monster card
+                    deleted_card += f"Are you sure you want to delete this " \
+                                    f"monster card?"
+                    confirmation = easygui.buttonbox(f"{deleted_card}",
+                                                     title="Confirmation",
+                                                     choices=["Confirm",
+                                                              "Cancel"])
+                    if confirmation == "Confirm":
+                        # Delete Monster card permanently from catalogue
+                        del monster_cards_catalogue[card]
+                    else:
+                        # Keep the monster card unchanged in catalogue
+                        continue
+                    break
+        # If user selects exit break loop and exit function
         else:
-            continue
-        break
+            break
 
-if not found:
-    easygui.msgbox(f"There are no Combos named {card_search}",
-                   title="Not Found")
 
-for monster_card_name, monster_card_values in monster_cards_catalogue \
-        .items():
+# Main Routine
+delete_monster_card()
+# Print monster card catalogue (in format) in python console
+for monster_card_name, monster_card_values in monster_cards_catalogue.items():
     print(f"\nMonster Card: {monster_card_name}")
 
     for key in monster_card_values:
