@@ -101,36 +101,8 @@ def create_new_monster_card():
     monster_cards_catalogue[card_name]['Cunning'] = cunning
 
 
-# Search for Monster Card Function
-def search_monster_card():
-    catalogue = list(monster_cards_catalogue)
-    # User selects monster card they are searching for
-    card_search = easygui.buttonbox("Select the Monster Card you are searching"
-                                    " for", title="Searching",
-                                    choices=catalogue + ["Cancel"])
-
-    # Print the Results
-    search_results = ""
-    if card_search == "Cancel":
-        return card_search
-    elif card_search:
-        search_results += f"Monster Name: {card_search}\n"
-        for category, values in monster_cards_catalogue[card_search].items():
-            search_results += f"{category}: {values}\n"
-        easygui.msgbox(search_results, title="Results")
-        print(search_results)
-    else:
-        easygui.msgbox("No card selected!", title="Results")
-
-
 # Edit a selected Monster Card Function
-def edit_monster_card():
-    # Asking what monster card they want to edit
-    catalogue = list(monster_cards_catalogue.keys())
-    edit_card = easygui.buttonbox("Select the Monster Card you want to edit",
-                                  title="Searching",
-                                  choices=catalogue + ["Cancel"])
-
+def edit_monster_card(edit_card):
     if edit_card != "Cancel":
         while True:
             # Display the original Monster Card Values
@@ -185,6 +157,38 @@ def edit_monster_card():
                                            title="Cancelled")
             else:
                 break
+
+
+# Search for Monster Card Function
+def search_monster_card():
+    catalogue = list(monster_cards_catalogue)
+    # User selects monster card they are searching for
+    card_search = easygui.buttonbox("Select the Monster Card you are searching"
+                                    " for", title="Searching",
+                                    choices=catalogue + ["Cancel"])
+
+    # Print the Results
+    search_results = ""
+    if card_search == "Cancel":
+        return card_search
+    elif card_search:
+        search_results += f"Monster Name: {card_search}\n"
+        for category, values in monster_cards_catalogue[card_search].items():
+            search_results += f"{category}: {values}\n"
+        proceed = easygui.buttonbox(search_results, title="Results",
+                                    choices=["Edit", "Print", "Exit"])
+        if proceed == "Edit":
+            # Asking what monster card they want to edit
+            catalogue = list(monster_cards_catalogue.keys())
+            edit_card = easygui.buttonbox(
+                "Select the Monster Card you want to edit",
+                title="Searching",
+                choices=catalogue + ["Cancel"])
+            edit_monster_card(edit_card)
+        elif proceed == "Print":
+            print(search_results)
+    else:
+        easygui.msgbox("No card selected!", title="Results")
 
 
 # Delete monster card function
